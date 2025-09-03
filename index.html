@@ -7531,7 +7531,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="The-Thematic-map">The Thematic map<a class="anchor-link" href="#The-Thematic-map">¶</a></h1><p>Last session we opened this map:</p>
+<h1 id="The-Thematic-map">The Thematic map<a class="anchor-link" href="#The-Thematic-map">¶</a></h1><p>Last session we created a file with several layers:</p>
 </div>
 </div>
 </div>
@@ -7545,13 +7545,49 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
 
-<span class="n">linkGitSession</span><span class="o">=</span><span class="s1">'https://github.com/CienciaDeDatosEspacial/dataSets/raw/main/'</span>
-<span class="n">linkCountries</span><span class="o">=</span><span class="s1">'WORLD/World_Countries.zip'</span>
+<span class="n">linkGit</span><span class="o">=</span><span class="s1">'https://github.com/CienciaDeDatosEspacial/dataSets/raw/main/'</span>
+<span class="n">linkWorldMaps</span><span class="o">=</span><span class="s1">'WORLD/worldMaps.gpkg'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">gpd</span><span class="o">.</span><span class="n">list_layers</span><span class="p">(</span><span class="n">linkGit</span><span class="o">+</span><span class="n">linkWorldMaps</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>For the thematics we will retrieve only one:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">countries</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">linkGit</span><span class="o">+</span><span class="n">linkWorldMaps</span><span class="p">,</span><span class="n">layer</span><span class="o">=</span><span class="s1">'countries'</span><span class="p">)</span>
 
-<span class="n">fullLinkCountries</span><span class="o">=</span><span class="n">linkGitSession</span><span class="o">+</span><span class="n">linkCountries</span>
-<span class="n">countries</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">fullLinkCountries</span><span class="p">)</span>
-
-<span class="c1">### see some rows:</span>
+<span class="c1"># see some</span>
 <span class="n">countries</span>
 </pre></div>
 </div>
@@ -8196,7 +8232,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">## GDF to the 'left'</span>
 <span class="n">theMapAndData</span><span class="o">=</span><span class="n">countries</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">someData</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">'Country'</span><span class="p">)</span>
-<span class="n">theMapAndData</span>
+<span class="n">theMapAndData</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">"worldindicators.json"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
